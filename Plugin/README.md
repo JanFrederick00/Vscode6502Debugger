@@ -1,71 +1,42 @@
 # wdcmon-debug README
 
-This is the README for your extension "wdcmon-debug". After writing up a brief description, we recommend including the following sections.
+This plugin allows you to debug code running on the [Western Design Center W65C02SXB single board computer.](https://wdc65xx.com/Single-Board-Computers/w65c02sxb/) in Visual Studio Code.
 
-## Features
+You do not need to use WDC's TIDE or compiler at all, as this plugin uses CA65/LD65 to compile the assembly source code.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Prerequesites
 
-For example if there is an image subfolder under your extension project workspace:
+This plugin assumes that you have CC65 installed and accessible through your PATH variable. To make sure that it is correctly installed, run the command "CA65" from your command prompt. If windows tells you "'ca65' is not recognized as an internal or external command[...]", your PATH may be set incorrectly.
 
-\!\[feature X\]\(images/feature-x.png\)
+Connect the single-board computer to your PC via the USB port and make a note of the virtual COM-Port the device appears under.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Example launch.json
 
-## Requirements
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "wdcmon",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "full/path/to/your/main/assembly/file.asm",
+            "port": "your_sbc_port_eg_COM4",
+            "startSymbol": "START"
+        }
+    ]
+}
+```
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+The startSymbol decides where the program starts executing when you click "Start Debugging" - usually that's your reset-vector.
 
-## Extension Settings
+## Features:
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+With this plugin you can:
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Set breakpoints 
+- Single-step your SBC by selecting "Step Into" or "Step Over"
+- Pause the program at any time by pressing the "NMI"-Button on the device.
+- See the 65C02's registers at each step
+- Interactively modify the Value of the A,X,Y, and SP registers
+- Interactively type code in the debug console to immediately execute it.
