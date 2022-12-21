@@ -4,6 +4,8 @@ This plugin allows you to debug code running on the [Western Design Center W65C0
 
 You do not need to use WDC's TIDE or compiler at all, as this plugin uses CA65/LD65 to compile the assembly source code.
 
+Please note: this extension is still somewhat experimental. 
+
 ## Prerequesites
 
 This plugin assumes that you have CC65 installed and accessible through your PATH variable. To make sure that it is correctly installed, run the command "CA65" from your command prompt. If windows tells you "'ca65' is not recognized as an internal or external command[...]", your PATH may be set incorrectly.
@@ -30,7 +32,7 @@ Connect the single-board computer to your PC via the USB port and make a note of
 
 The startSymbol decides where the program starts executing when you click "Start Debugging" - usually that's your reset-vector.
 
-## Features:
+## Features
 
 With this plugin you can:
 

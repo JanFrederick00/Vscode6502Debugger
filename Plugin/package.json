@@ -1,12 +1,14 @@
 {
-  "name": "wdcmon-debug",
-  "displayName": "6502 debugger",
+  "name": "wdcmon6502debugger",
+  "displayName": "Unofficial W65C02SXB Debugger (6502)",
   "description": "Debugger extension for debugging 6502 source code on the WDC W65C02SXB single-board computer.",
   "version": "0.0.2",
   "engines": {
     "vscode": "^1.74.0"
   },
   "author": { "name": "JanFrederick"},
+  "publisher": "JanFrederick",
+  "icon": "6502.png",
   "categories": [
     "Debuggers"
   ],
@@ -15,6 +17,7 @@
   ],
   "repository": { "type": "git", "url": "https://github.com/JanFrederick00/Vscode6502Debugger/tree/main"},
   "main": "./out/extension.js",
+  "license": "MIT (see License.txt)",
   "contributes": {
     "breakpoints": [{"language": "cc65"}],
     "debuggers": [
