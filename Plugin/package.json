@@ -1,8 +1,8 @@
 {
   "name": "wdcmon-debug",
-  "displayName": "W65C02SXB Debugger",
-  "description": "Debugger Extension for debugging 6502 Source Code on the WDC W65C02SXB",
-  "version": "0.0.1",
+  "displayName": "6502 debugger",
+  "description": "Debugger extension for debugging 6502 source code on the WDC W65C02SXB single-board computer.",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -13,6 +13,7 @@
   "activationEvents": [
     "onDebug"
   ],
+  "repository": { "type": "git", "url": "https://github.com/JanFrederick00/Vscode6502Debugger/tree/main"},
   "main": "./out/extension.js",
   "contributes": {
     "breakpoints": [{"language": "cc65"}],
