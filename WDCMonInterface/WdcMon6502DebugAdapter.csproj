@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>False</UseWindowsForms>
     <AssemblyName>WdcMon6502DebugAdapter</AssemblyName>
-	<PublishSingleFile>true</PublishSingleFile>
+  	<PublishSingleFile>true</PublishSingleFile>
 	<SelfContained>true</SelfContained>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>

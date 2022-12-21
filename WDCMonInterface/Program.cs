@@ -42,7 +42,7 @@ namespace WDCMonInterface
             Logger.FileName = logFile;
 
 
-            Logger.Log("WdcMonInterface started!");
+            Logger.Log("WdcMonInterface started (test)!");
             dap = new DapHandler(Console.OpenStandardInput(), Console.OpenStandardOutput());
             dap.OnDapMessageReceived += DapMessageReceived;
             dap.Run();
@@ -564,7 +564,9 @@ namespace WDCMonInterface
                                     {
                                         // Monitor
                                         string monitorExpression = evalReq.expression.Trim().Trim('?');
-
+                                        var result = WdcMon6502DebugAdapter.Monitor.PerformAction(debugger, monitorExpression);
+                                        DebugConsole(result);
+                                        break;
                                     }
                                     else
                                     {
