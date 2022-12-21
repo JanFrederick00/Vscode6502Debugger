@@ -1,0 +1,102 @@
+{
+  "name": "wdcmon-debug",
+  "displayName": "W65C02SXB Debugger",
+  "description": "Debugger Extension for debugging 6502 Source Code on the WDC W65C02SXB",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "author": { "name": "JanFrederick"},
+  "categories": [
+    "Debuggers"
+  ],
+  "activationEvents": [
+    "onDebug"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "breakpoints": [{"language": "cc65"}],
+    "debuggers": [
+      {
+        "type": "wdcmon",
+        "label": "W65C02SXB",
+        "program": "bin/WdcMon6502DebugAdapter.exe",
+        "configurationAttributes": {
+          "launch": {
+            "required": ["program", "port", "startSymbol"],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Path to main .asm File",
+                "default": ""
+              }, 
+              "port": {
+                "type": "string",
+                "description": "Serial Port of W65C02SXB",
+                "default": "COM4"
+              },
+              "startSymbol": {
+                "type": "string",
+                "description": "Symbol of the Reset Vector",
+                "default": "START"
+              },
+              "linkerConfig": {
+                "type": "string",
+                "description": "Configuration to be passed to CA65",
+                "default": null
+              }
+            }
+          }
+        },
+        
+        "initialConfigurations": [
+          {
+            "type": "wdcmon",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "",
+            "port": "COM4",
+            "startSymbol": "START"
+          }
+        ],
+  
+        "configurationSnippets": [
+          {
+            "label": "W65C02SXB: Launch",
+            "description": "A new Configuration for debugging 6502 Assembly Code on a WDC W65C02SXB",
+            "body": {
+              "type": "wdcmon",
+              "request": "launch",
+              "name": "${2:Launch Program}",
+              "program": "^\"\\${workspaceFolder}/${1:Program}\"",
+              "port": "COM4",
+              "startSymbol": "START"
+            }
+          }
+        ]
+        
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.3",
+    "@vscode/test-electron": "^2.2.0"
+  }
+}
