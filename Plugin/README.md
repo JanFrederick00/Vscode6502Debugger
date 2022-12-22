@@ -42,3 +42,56 @@ With this plugin you can:
 - See the 65C02's registers at each step
 - Interactively modify the Value of the A,X,Y, and SP registers
 - Interactively type code in the debug console to immediately execute it.
+
+# How To...
+
+### Supply a linker configuration for LD65
+
+To use a custom linker configuration, specify the field "linkerConfig" in the launch.json. If no configuration is specified, -t none is used (LD65 default)
+
+### Use the debug console in VS Code
+
+When execution is halted you can use the debug console to run commands or read / write memory.
+
+To run commands:
+
+Simply type the assembly you want to run. This assembly is assembled and executed. When you click "continue", execution will continue regularly.
+Most instructions are supported. Instructions that modify the program flow like JSR, JMP, RTS, RTI as well as the branch instructions are invalid.
+The Debugger should reply with "OK.", and changes to the registers should be visible in the "Variables" window.
+
+To read / write memory:
+
+Monitor commands are marked by a '?' at the beginning of the line.
+
+Numbers for the monitor can be specified in hexadecimal (by prefixing them by '$' or '0x') or decimal (default).
+
+To read memory from a single location, simply type that location's address.
+To read memory from a range of locations, type the first address, a dash ('-') and the second address (inclusive).
+The monitor will print out the memory in that range.
+
+To write memory, specify the starting address, a colon (':'), and the values to write to the memory region. You can specify multiple values which will be
+written to consecutive locations in Memory.
+
+Some examples:
+```
+Run an instruction:
+    LDA #$00
+        OK.
+    TAX
+        OK.
+    
+Read Memory:
+    ? $0000 - 10
+        $0000 $00 $01 $02 $03 $04 $05 $06 $07 $08 $09 $0A
+    
+    ? $0
+        $00
+        
+Write Memory:
+
+    ? $00: 1 2 0x03 4 $05 6 7 8 9 10
+```
+
+### Pause execution of the program:
+
+To pause the program, you cannot use the "pause"-button in the IDE; The SBC is inable of listening to commands as it is executing your code. To break into the monitor, press the "NMI"-Button on the device. The debugger will notice that the program has haltet and the instruction pointer in the IDE will highlight the line the execution stopped on (the next instruction to be executed).
