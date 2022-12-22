@@ -1,9 +1,15 @@
 # Change Log
 
-All notable changes to the "wdcmon-debug" extension will be documented in this file.
+## 0.4.0
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Updated README
+- Updated CHANGELOG
+- Changed Scratch location from $300 to $7D00.
 
-## [Unreleased]
+## 0.0.3
+
+- Implemented monitor commands to read / write memory
+
+## 0.0.2
 
 - Initial release
