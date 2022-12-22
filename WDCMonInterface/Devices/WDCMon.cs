@@ -5,7 +5,7 @@ namespace WDCMonInterface.Devices
 
     class WDCMon : ISystemInterface
     {
-        public ushort ScratchLocation => 0x300; // Todo: find out what the last used address in WDCMon and use the 16 bytes before that.
+        public ushort ScratchLocation => 0x7D00;
         SerialPort port;
         public WDCMon(string port)
         {
